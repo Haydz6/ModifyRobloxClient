@@ -19,6 +19,7 @@ func UserHomeDir() string {
 }
 
 var RobloxDirectories = [...]string{path.Join("C:", "Program Files (x86)", "Roblox"), path.Join(UserHomeDir(), "AppData", "Local", "Roblox")}
+var RobloxStudioDirectories = [...]string{path.Join(UserHomeDir(), "AppData", "Local", "Roblox Studio")}
 
 func GetLatestRobloxVersion() string {
 	Success, Response := FetchFile("http://setup.roblox.com/version.txt")
@@ -44,6 +45,27 @@ func GetContentsDirectory() string {
 	} else {
 		return path.Join(GetVersionDirectory(), "content")
 	}
+}
+
+func GetStudioContentsDirectory() string {
+	if runtime.GOOS == "darwin" {
+		return path.Join(GetRobloxStudioDirectory(), "Contents", "Resources", "content")
+	} else {
+		return path.Join(GetRobloxStudioDirectory(), "content")
+	}
+}
+
+func GetRobloxStudioDirectory() string {
+	for _, Directory := range RobloxStudioDirectories {
+		Exists := DirectoryExists(Directory)
+
+		if Exists {
+			println(Directory)
+			return Directory
+		}
+	}
+
+	return "/"+path.Join("Applications", "Roblox.app")
 }
 
 func GetRobloxDirectory() string {
