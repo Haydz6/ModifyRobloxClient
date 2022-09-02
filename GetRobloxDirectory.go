@@ -38,7 +38,7 @@ func GetLatestRobloxVersion() string {
 	return string(bodyBytes)
 }
 
-func GetContentsDirectory(){
+func GetContentsDirectory() string {
 	if runtime.GOOS == "darwin" {
 		return path.Join(GetVersionDirectory(), "Contents", "Resources", "content")
 	} else {
