@@ -38,6 +38,14 @@ func GetLatestRobloxVersion() string {
 	return string(bodyBytes)
 }
 
+func GetContentsDirectory(){
+	if runtime.GOOS == "darwin" {
+		return path.Join(GetVersionDirectory(), "Contents", "Resources", "content")
+	} else {
+		return path.Join(GetVersionDirectory(), "content")
+	}
+}
+
 func GetRobloxDirectory() string {
 	for _, Directory := range RobloxDirectories {
 		Exists := DirectoryExists(Directory)
@@ -53,6 +61,7 @@ func GetRobloxDirectory() string {
 
 func GetVersionDirectory() string {
 	if runtime.GOOS == "darwin" {
+		println(path.Join("~", "Applications", "Roblox.app"))
 		return GetRobloxDirectory()
 	} else {
 		return path.Join(GetRobloxDirectory(), "Versions", GetLatestRobloxVersion())
