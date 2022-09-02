@@ -56,7 +56,7 @@ func GetRobloxDirectory() string {
 		}
 	}
 
-	return ""
+	return path.Join("~", "Applications", "Roblox.app")
 }
 
 func GetVersionDirectory() string {
