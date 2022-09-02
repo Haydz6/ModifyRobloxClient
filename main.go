@@ -14,8 +14,8 @@ func main() {
 		return
 	}
 
-	Success1 := WriteFile("https://haydz.cf/files/oldrobloxfiles/coloredlogo.png", path.Join(VersionDirectory, "content", "textures", "ui", "TopBar", "coloredlogo.png"))
-	Success2 := WriteFile("https://haydz.cf/files/oldrobloxfiles/ouch.ogg", path.Join(VersionDirectory, "content", "sounds", "ouch.ogg"))
+	Success1 := WriteFile("https://haydz.cf/files/oldrobloxfiles/coloredlogo.png", path.Join(GetContentsDirectory(), "textures", "ui", "TopBar", "coloredlogo.png"))
+	Success2 := WriteFile("https://haydz.cf/files/oldrobloxfiles/ouch.ogg", path.Join(GetContentsDirectory(), "sounds", "ouch.ogg"))
 
 	if Success1 && Success2 {
 		TagAsUpdated(VersionDirectory)
