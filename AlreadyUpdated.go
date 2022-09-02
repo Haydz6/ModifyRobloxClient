@@ -5,6 +5,16 @@ import (
 	"path"
 )
 
+func DirectoryExists(Directory string) bool {
+	_, err := os.Stat(Directory)
+
+	if err == nil {
+		return true
+	}
+
+	return os.IsExist(err)
+}
+
 func TagAsUpdated(Directory string) {
 	file, err := os.Create(path.Join(Directory, "ClientAlreadyModified"))
 
@@ -17,7 +27,5 @@ func TagAsUpdated(Directory string) {
 }
 
 func IsAlreadyUpdated(Directory string) bool {
-	_, err := os.Stat(path.Join(Directory, "ClientAlreadyModified"))
-
-	return os.IsExist(err)
+	return DirectoryExists(path.Join(Directory, "ClientAlreadyModified"))
 }
