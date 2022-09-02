@@ -2,8 +2,23 @@ package main
 
 import (
 	"io"
+	"os"
 	"path"
+	"runtime"
 )
+
+func UserHomeDir() string {
+	if runtime.GOOS == "windows" {
+		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
+		if home == "" {
+			home = os.Getenv("USERPROFILE")
+		}
+		return home
+	}
+	return os.Getenv("HOME")
+}
+
+var RobloxDirectories = [...]string{path.Join("C:", "Program Files (x86)", "Roblox"), path.Join(UserHomeDir(), "AppData", "Local", "Roblox")}
 
 func GetLatestRobloxVersion() string {
 	Success, Response := FetchFile("http://setup.roblox.com/version.txt")
@@ -24,7 +39,16 @@ func GetLatestRobloxVersion() string {
 }
 
 func GetRobloxDirectory() string {
-	return path.Join("C:", "Program Files (x86)", "Roblox")
+	for _, Directory := range RobloxDirectories {
+		Exists := DirectoryExists(Directory)
+
+		if Exists {
+			println(Directory)
+			return Directory
+		}
+	}
+
+	return ""
 }
 
 func GetVersionDirectory() string {
