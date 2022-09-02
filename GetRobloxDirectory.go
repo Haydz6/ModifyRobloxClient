@@ -18,7 +18,7 @@ func UserHomeDir() string {
 	return os.Getenv("HOME")
 }
 
-var RobloxDirectories = [...]string{path.Join("C:", "Program Files (x86)", "Roblox"), path.Join(UserHomeDir(), "AppData", "Local", "Roblox"), path.Join("~", "Applications", "Roblox.app")}
+var RobloxDirectories = [...]string{path.Join("C:", "Program Files (x86)", "Roblox"), path.Join(UserHomeDir(), "AppData", "Local", "Roblox")}
 
 func GetLatestRobloxVersion() string {
 	Success, Response := FetchFile("http://setup.roblox.com/version.txt")
@@ -56,7 +56,7 @@ func GetRobloxDirectory() string {
 		}
 	}
 
-	return os.ExpandEnv(path.Join("$HOME", "Applications", "Roblox.app"))
+	return path.Join("Macintosh HD", "Applications", "Roblox.app")
 }
 
 func GetVersionDirectory() string {
