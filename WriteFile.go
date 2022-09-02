@@ -24,8 +24,13 @@ func WriteFile(URL string, DestinationPath string) bool {
 
 	if errWrite != nil {
 		println(errWrite.Error())
+
+		if os.IsPermission(errWrite) {
+			println("You need to run the program as administrator!")
+		}
+
 		return false
-	}
+}
 
 	return true
 }
