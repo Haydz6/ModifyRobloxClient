@@ -65,6 +65,7 @@ func GetVersionDirectory() string {
 		println(DirectoryExists(path.Join("~", "Applications", "Roblox.app")))
 		println(DirectoryExists("~"))
 		println(DirectoryExists(path.Join("~", "Applications")))
+		println(DirectoryExists("Applications"))
 		return GetRobloxDirectory()
 	} else {
 		return path.Join(GetRobloxDirectory(), "Versions", GetLatestRobloxVersion())
