@@ -16,8 +16,9 @@ func main() {
 
 	Success1 := WriteFile("https://haydz.cf/files/oldrobloxfiles/coloredlogo.png", path.Join(GetContentsDirectory(), "textures", "ui", "TopBar", "coloredlogo.png"))
 	Success2 := WriteFile("https://haydz.cf/files/oldrobloxfiles/ouch.ogg", path.Join(GetContentsDirectory(), "sounds", "ouch.ogg"))
+	Success3 := WriteFile("https://haydz.cf/files/oldrobloxfiles/robloxTilt.png", path.Join(GetContentsDirectory(), "textures", "loading", "robloxTilt.png"))
 
-	if Success1 && Success2 {
+	if Success1 && Success2 && Success3 {
 		TagAsUpdated(VersionDirectory)
 	} else {
 		println("\nOne or more files failed to update!")
